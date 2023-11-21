@@ -1,0 +1,44 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Login",
+            "request": "launch",
+            "mainClass": "Login.Login",
+            "projectName": "RubberDucky_3a9d4739",
+            "vmArgs": "--module-path /home/john/Downloads/javafx-sdk-21.0.1/lib --add-modules javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
+            "name": "PayloadDB",
+            "request": "launch",
+            "mainClass": "application.PayloadDB",
+            "projectName": "RubberDucky_3a9d4739"
+        },
+        {
+            "type": "java",
+            "name": "Demo",
+            "request": "launch",
+            "mainClass": "dbconnect.Demo",
+            "projectName": "RubberDucky_3a9d4739"
+        },
+        {
+            "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "application.App",
+            "projectName": "RubberDucky_3a9d4739",
+            "vmArgs": "--module-path /home/john/Downloads/javafx-sdk-21.0.1/lib --add-modules javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        }
+    ]
+}
