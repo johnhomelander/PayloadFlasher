@@ -45,4 +45,6 @@ public class Controller implements Initializable {
         payloadOutputArea.clear();
     }
 
+    public void addPayload(){}
+
 }

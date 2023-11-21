@@ -8,6 +8,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class PayloadDB {
@@ -62,36 +64,48 @@ public class PayloadDB {
     }
 
     public void loginUser(ActionEvent event,String loginUser, String loginPass){
-        int flag = 0;
+        // int flag = 0;
+        if (loginUser.isEmpty()){
+            createErrorAlert("Username not entered");
+            // System.out.println("Enter username");
+        }
+        else if (loginPass.isEmpty()){
+            createErrorAlert("Password not entered");
+            // System.out.println("Enter password");
+        }
+        else{
         try{
             String query = "select password from payload_user where username='"+loginUser+"'";
             Connection con = DriverManager.getConnection(url,dbUser,dbPass);
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);
             if (rs.isBeforeFirst()){
-                    flag=1;
+                    // flag=1;
                 while (rs.next()){
                     String retrievedPassword = rs.getString("password");
-                    flag = 2;
+                    // flag = 2;
                     if (retrievedPassword.equals(loginPass)){
-                        System.out.println("Logged In!");
+                        // System.out.println("Logged In!");
                         changeScene(event, "Main.fxml");
                         
                     }
                     else{
-                        System.out.println("Incorrect Password");
+                        createErrorAlert("Incorrect Password");
+                        // System.out.println("Incorrect Password");
                     }
                 }
             }
             else{
-                System.out.println("Incorrect Credentials");
+                createErrorAlert("Incorrect Credentials");
+                // System.out.println("Incorrect Credentials");
             }
             con.close();
         }
         catch(Exception e){
             e.printStackTrace();
         }
-        System.out.println(flag);
+        // System.out.println(flag);
+    }
     }
 
     public static void changeScene(ActionEvent event, String fxmlFile){
@@ -106,8 +120,19 @@ public class PayloadDB {
         }
     }
 
-    public void signUpUser(ActionEvent event, String signUpUser, String signUpPass, String signUpEmail){
+    public static void createErrorAlert(String errorMessage){
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setContentText(errorMessage); 
+        alert.show();
+    }
 
+    public void signUpUser(ActionEvent event, String signUpUser, String signUpEmail, String signUpPass,String signUpConfirmPass){
+        
+        if (signUpUser.isEmpty()|| signUpEmail.isEmpty() || signUpPass.isEmpty() || signUpConfirmPass.isEmpty()){
+            createErrorAlert("Incomplete Details");
+            // System.out.println("Incomplete Details");
+        }
+        else{
         try{
             String checkQuery = "select * from payload_user where username='"+signUpUser+"'";
             String addUserQuery = "insert into payload_user values('"+signUpUser+"','"+signUpPass+"','"+signUpEmail+"')";
@@ -116,18 +141,26 @@ public class PayloadDB {
             ResultSet checkResult = st.executeQuery(checkQuery);
 
             if (!checkResult.isBeforeFirst()){
-                st.executeQuery(addUserQuery);
-                System.out.println("User created");
+                if (signUpPass.equals(signUpConfirmPass)){
+                    st.executeQuery(addUserQuery);
+                }
+                else{
+                    createErrorAlert("Input passwords do not match");
+                    // System.out.println("Input passwords do not match");
+                }
+                // System.out.println("User created");
                 changeScene(event, "Main.fxml");
             }
             else{
-                System.out.println("User exists");
+                createErrorAlert("User exists already");
+                // System.out.println("User exists");
             }
         }
         catch(Exception e){
             e.printStackTrace();
         }
+        }
     }
 
-    
+
 }

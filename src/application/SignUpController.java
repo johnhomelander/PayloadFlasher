@@ -36,8 +36,9 @@ public class SignUpController {
         String username = usernameField.getText();
         String password = passwordField.getText();
         String email = emailField.getText();
+        String confirmPassword = confirmPasswordField.getText();
 
-        payloadDB.signUpUser(event, username, password, email);
+        payloadDB.signUpUser(event, username, email, password, confirmPassword);
 
     }
 
