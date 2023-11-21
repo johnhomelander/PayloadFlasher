@@ -11,7 +11,7 @@ public class App extends Application{
         launch(args);
     }
     public void start(Stage stage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
         Scene scene = new Scene(root);
 
         stage.setTitle("Rubber Ducky Flashing Tool");

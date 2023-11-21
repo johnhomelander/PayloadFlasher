@@ -13,6 +13,8 @@ public class LoginController {
     private PasswordField passwordField;
     @FXML
     private Button loginButton;
+    @FXML
+    private Button signUpInsteadButton;
 
     PayloadDB payloadDBLogin = new PayloadDB();
 
@@ -20,7 +22,10 @@ public class LoginController {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
-        payloadDBLogin.checkUser(username, password);
+        payloadDBLogin.loginUser(event, username, password);
     }
 
+    public void signUpInstead(ActionEvent event){
+        PayloadDB.changeScene(event, "SignUp.fxml");
+    }
 }

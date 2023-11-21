@@ -20,6 +20,8 @@ public class Controller implements Initializable {
     @FXML
     private Button clearButton;
     @FXML
+    private Button addButton;
+    @FXML
     private TextArea payloadOutputArea;
     @FXML
     private ChoiceBox<String> payloadChoiceBox;
