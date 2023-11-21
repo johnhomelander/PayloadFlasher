@@ -45,6 +45,8 @@ public class Controller implements Initializable {
         payloadOutputArea.clear();
     }
 
-    public void addPayload(){}
+    public void addPayload(ActionEvent event){
+        PayloadDB.changeScene(event,"AddPayload.fxml");
+    }
 
 }

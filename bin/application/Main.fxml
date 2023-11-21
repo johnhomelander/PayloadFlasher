@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="617.0" prefWidth="622.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
    <children>
       <Button fx:id="flashButton" layoutX="341.0" layoutY="540.0" mnemonicParsing="false" text="Flash" />
       <Button fx:id="loadBUtton" layoutX="140.0" layoutY="540.0" mnemonicParsing="false" onAction="#loadPayload" text="Load" />
@@ -21,7 +21,7 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <Button fx:id="addButton" layoutX="441.0" layoutY="540.0" mnemonicParsing="false" text="Add" />
+      <Button fx:id="addButton" layoutX="441.0" layoutY="540.0" mnemonicParsing="false" onAction="#addPayload" text="Add" />
       <Label layoutX="36.0" layoutY="135.0" prefHeight="26.0" prefWidth="166.0" text="Select Payload : ">
          <font>
             <Font size="16.0" />

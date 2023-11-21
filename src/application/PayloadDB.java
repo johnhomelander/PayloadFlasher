@@ -69,7 +69,7 @@ public class PayloadDB {
             createErrorAlert("Username not entered");
             // System.out.println("Enter username");
         }
-        else if (loginPass.isEmpty()){
+        if (loginPass.isEmpty()){
             createErrorAlert("Password not entered");
             // System.out.println("Enter password");
         }
@@ -125,6 +125,12 @@ public class PayloadDB {
         alert.setContentText(errorMessage); 
         alert.show();
     }
+    
+    public static void createInfoAlert(String infoMessage){
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setContentText(infoMessage); 
+        alert.show();
+    }
 
     public void signUpUser(ActionEvent event, String signUpUser, String signUpEmail, String signUpPass,String signUpConfirmPass){
         
@@ -143,6 +149,7 @@ public class PayloadDB {
             if (!checkResult.isBeforeFirst()){
                 if (signUpPass.equals(signUpConfirmPass)){
                     st.executeQuery(addUserQuery);
+                    createInfoAlert("You have successfully signed up");
                 }
                 else{
                     createErrorAlert("Input passwords do not match");
@@ -162,5 +169,25 @@ public class PayloadDB {
         }
     }
 
-
+    public void insertPayload(ActionEvent event, String payloadName, String payloadValue){
+        if (payloadName.isEmpty()){
+            createErrorAlert("No payload name given");
+        }
+        else if (payloadValue.isEmpty()){
+            createErrorAlert("Payload value is empty");
+        }
+        else{
+            try{
+                String query = "insert into payload_table values('"+payloadName+"','"+payloadValue+"')";
+                Connection con = DriverManager.getConnection(url,dbUser,dbPass);
+                Statement st = con.createStatement();
+                st.executeQuery(query);
+                createInfoAlert("Payload Saved");
+                changeScene(event, "Main.fxml");
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+    }
+    }
 }
