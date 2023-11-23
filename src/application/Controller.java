@@ -22,17 +22,19 @@ public class Controller implements Initializable {
     @FXML
     private Button addButton;
     @FXML
+    private Button deleteButton;
+    @FXML
     private TextArea payloadOutputArea;
     @FXML
     private ChoiceBox<String> payloadChoiceBox;
 
     PayloadDB payloadDB = new PayloadDB();
 
-    private ArrayList<String> payloadTypes = payloadDB.getPayloadNames();
+    private ArrayList<String> payloadNames = payloadDB.getPayloadNames();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-       payloadChoiceBox.getItems().addAll(payloadTypes);
+       payloadChoiceBox.getItems().addAll(payloadNames);
     }
 
     public void loadPayload(ActionEvent event){
@@ -47,6 +49,10 @@ public class Controller implements Initializable {
 
     public void addPayload(ActionEvent event){
         PayloadDB.changeScene(event,"AddPayload.fxml");
+    }
+
+    public void deletePayload(ActionEvent event){
+        PayloadDB.changeScene(event,"DeletePayload.fxml");
     }
 
 }

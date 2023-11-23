@@ -16,7 +16,7 @@ public class PayloadDB {
     private String url = "jdbc:mariadb://localhost/db1";
     private String dbUser = "root";
     private String dbPass = "toor";
-    private String loggedInUser = "";
+    private static String loggedInUser = "";
     
     // public static void main(String[] args) {
         
@@ -196,4 +196,42 @@ public class PayloadDB {
     }
     }
     // for pull request
+    public void deletePayload(ActionEvent event, String payloadName, String loginPass){
+
+        try{
+            String checkQuery = "select * from payload_user where username='"+loggedInUser+"'";
+            String deleteQuery = "delete from payload_table where payload_name='"+payloadName+"'";
+
+            Connection con = DriverManager.getConnection(url,dbUser,dbPass);
+            Statement st = con.createStatement();
+            ResultSet checkResult = st.executeQuery(checkQuery);
+            // System.out.println("1");
+
+            if(checkResult.isBeforeFirst()){
+                    // System.out.println(loggedInUser);
+                    // System.out.println(checkResult.next());
+                    while(checkResult.next()){
+                    String retrievedPass = checkResult.getString("password");
+                    // System.out.println(retrievedPass);
+
+                    if (retrievedPass.equals(loginPass)){
+                        st.executeQuery(deleteQuery);
+                        con.close();
+                        createInfoAlert("Payload Deleted");
+                        changeScene(event, "Main.fxml");
+                        // System.out.println("3");
+                   }
+                    else{
+                        createErrorAlert("Incorrect Password");
+                    }
+                }
+            }
+            else{
+                createErrorAlert("Invalid Password");
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
 }
