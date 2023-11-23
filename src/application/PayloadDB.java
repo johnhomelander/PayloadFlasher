@@ -73,7 +73,7 @@ public class PayloadDB {
             createErrorAlert("Password not entered");
             // System.out.println("Enter password");
         }
-        else{
+        else{ // Check username is correct or not
         try{
             String query = "select password from payload_user where username='"+loginUser+"'";
             Connection con = DriverManager.getConnection(url,dbUser,dbPass);
@@ -90,7 +90,7 @@ public class PayloadDB {
                         
                     }
                     else{
-                        createErrorAlert("Incorrect Password");
+                        createErrorAlert("Incorrect Credentials");
                         // System.out.println("Incorrect Password");
                     }
                 }
@@ -150,13 +150,13 @@ public class PayloadDB {
                 if (signUpPass.equals(signUpConfirmPass)){
                     st.executeQuery(addUserQuery);
                     createInfoAlert("You have successfully signed up");
+                    changeScene(event, "Main.fxml");
                 }
                 else{
                     createErrorAlert("Input passwords do not match");
                     // System.out.println("Input passwords do not match");
                 }
                 // System.out.println("User created");
-                changeScene(event, "Main.fxml");
             }
             else{
                 createErrorAlert("User exists already");
