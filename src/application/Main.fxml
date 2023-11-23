@@ -10,22 +10,23 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
    <children>
-      <Button fx:id="flashButton" layoutX="341.0" layoutY="540.0" mnemonicParsing="false" text="Flash" />
-      <Button fx:id="loadBUtton" layoutX="140.0" layoutY="540.0" mnemonicParsing="false" onAction="#loadPayload" text="Load" />
+      <Button fx:id="flashButton" layoutX="298.0" layoutY="540.0" mnemonicParsing="false" text="Flash" />
+      <Button fx:id="loadBUtton" layoutX="97.0" layoutY="540.0" mnemonicParsing="false" onAction="#loadPayload" text="Load" />
       <ChoiceBox fx:id="payloadChoiceBox" layoutX="221.0" layoutY="135.0" prefHeight="26.0" prefWidth="367.0" />
       <TextArea fx:id="payloadOutputArea" layoutX="26.0" layoutY="182.0" prefHeight="334.0" prefWidth="571.0" />
-      <Button fx:id="clearButton" layoutX="240.0" layoutY="540.0" mnemonicParsing="false" onAction="#clearPayloadOutputArea" text="Clear" />
+      <Button fx:id="clearButton" layoutX="197.0" layoutY="540.0" mnemonicParsing="false" onAction="#clearPayloadOutputArea" text="Clear" />
       <ImageView fitHeight="82.0" fitWidth="90.0" layoutX="75.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
       <Label layoutX="204.0" layoutY="21.0" prefHeight="82.0" prefWidth="346.0" text="PayloadFlasher">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
-      <Button fx:id="addButton" layoutX="441.0" layoutY="540.0" mnemonicParsing="false" onAction="#addPayload" text="Add" />
+      <Button fx:id="addButton" layoutX="398.0" layoutY="540.0" mnemonicParsing="false" onAction="#addPayload" text="Add" />
       <Label layoutX="36.0" layoutY="135.0" prefHeight="26.0" prefWidth="166.0" text="Select Payload : ">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
+      <Button fx:id="deleteButton" layoutX="474.0" layoutY="540.0" mnemonicParsing="false" onAction="#deletePayload" text="Delete" />
    </children>
 </AnchorPane>
