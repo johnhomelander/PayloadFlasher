@@ -16,6 +16,7 @@ public class PayloadDB {
     private String url = "jdbc:mariadb://localhost/db1";
     private String dbUser = "root";
     private String dbPass = "toor";
+    private String loggedInUser = "";
     
     // public static void main(String[] args) {
         
@@ -26,6 +27,32 @@ public class PayloadDB {
     // System.out.println(payloadDB.getPayloadValue("hoaxshell"));
 
     // }
+
+    // Static methods
+    
+    public static void changeScene(ActionEvent event, String fxmlFile){
+        try{
+        Parent root = FXMLLoader.load(App.class.getResource(fxmlFile));
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);  
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void createErrorAlert(String errorMessage){
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setContentText(errorMessage); 
+        alert.show();
+    }
+    
+    public static void createInfoAlert(String infoMessage){
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setContentText(infoMessage); 
+        alert.show();
+    }
 
     public ArrayList<String> getPayloadNames(){
         ArrayList<String> output = new ArrayList<String>();
@@ -86,6 +113,7 @@ public class PayloadDB {
                     // flag = 2;
                     if (retrievedPassword.equals(loginPass)){
                         // System.out.println("Logged In!");
+                        loggedInUser=loginUser;
                         changeScene(event, "Main.fxml");
                         
                     }
@@ -108,30 +136,6 @@ public class PayloadDB {
     }
     }
 
-    public static void changeScene(ActionEvent event, String fxmlFile){
-        try{
-        Parent root = FXMLLoader.load(App.class.getResource(fxmlFile));
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);  
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-    }
-
-    public static void createErrorAlert(String errorMessage){
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setContentText(errorMessage); 
-        alert.show();
-    }
-    
-    public static void createInfoAlert(String infoMessage){
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setContentText(infoMessage); 
-        alert.show();
-    }
-
     public void signUpUser(ActionEvent event, String signUpUser, String signUpEmail, String signUpPass,String signUpConfirmPass){
         
         if (signUpUser.isEmpty()|| signUpEmail.isEmpty() || signUpPass.isEmpty() || signUpConfirmPass.isEmpty()){
@@ -150,6 +154,7 @@ public class PayloadDB {
                 if (signUpPass.equals(signUpConfirmPass)){
                     st.executeQuery(addUserQuery);
                     createInfoAlert("You have successfully signed up");
+                    loggedInUser=signUpUser;
                     changeScene(event, "Main.fxml");
                 }
                 else{
